@@ -1,0 +1,91 @@
+.App {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f7fc;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #5a5a5a;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .form-field {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    border-color: #007bff;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  p {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .success-message {
+    color: green;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  body {
+  background-color: #f7f7f7;
+  font-family: 'Arial', sans-serif;
+}
+
+h1 {
+  color: #4c6ef5;
+}
+
+button {
+  background-color: #4c6ef5;
+}
+
+button:hover {
+  background-color: #3b56d3;
+}
+
+.p-button {
+    transition: background-color 0.3s ease;
+  }
+  .p-button:hover {
+    background-color: #38bdf8; /* Cor de fundo mais suave no hover */
+  }
+  
