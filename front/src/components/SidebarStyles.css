@@ -1,0 +1,45 @@
+.App .sidebar { /* Selecionando a sidebar DENTRO do App */
+    width: 250px;
+    background-color: #200229;
+    color: white;
+    position: fixed;
+    height: 100vh;
+    padding: 20px;
+    z-index: 10;
+    top: 0;
+    overflow-y: auto; /* Adicione scroll se necessário */
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+    .sidebar-link {
+        display: block;
+        margin: 5px 0;
+        text-decoration: none;
+    }
+    
+    .sidebar-button { /* Estilos para o botão dentro da sidebar */
+        width: 100%; /* Largura total */
+        text-align: left; /* Alinhamento do texto à esquerda */
+        padding: 10px 15px; /* Espaçamento interno */
+        border-radius: 5px; /* Bordas arredondadas */
+        /* Remova estilos padrões do botão que você não quer */
+        background: none;
+        border: none;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+    
+    .sidebar-button:hover {
+        background-color: #374151;
+    }
+    
+    .sidebar-button:enabled:hover{
+        background-color: #374151;
+    }
+    
+    .sidebar-link.active .sidebar-button {
+        background-color: #4c6ef5;
+        font-weight: bold;
+    }
