@@ -1,8 +1,10 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import './SidebarStyles.css';
 
+// eslint-disable-next-line react/prop-types
 function Sidebar({ handleThemeToggle, theme }) {
     const location = useLocation();
 
@@ -20,6 +22,9 @@ function Sidebar({ handleThemeToggle, theme }) {
                 </Link>
                 <Link to="/tasks" className={`sidebar-link ${location.pathname === '/tasks' ? 'active' : ''}`}>
                     <Button label="Tarefas" className="p-button-text sidebar-button" />
+                </Link>
+                <Link to="/goals" className={`sidebar-link ${location.pathname === '/goals' ? 'active' : ''}`}>
+                    <Button label="Metas" className="p-button-text sidebar-button" />
                 </Link>
             </nav>
         </div>

@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import Tasks from './pages/Tasks';
+import GoalForm from './pages/GoalForm';
 import './App.css';
 import './AppStyles.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+
 
 function App() {
     const [theme, setTheme] = useState('light');
@@ -32,7 +34,9 @@ function App() {
                 <div className="content">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/tasks" element={<Tasks />} />
+                        <Route path="/goals" element={<GoalForm/>} />
+                        <Route path="/tasks" element={<Tasks />}/>
+                        
                     </Routes>
                 </div>
             </div>

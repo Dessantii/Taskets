@@ -1,0 +1,67 @@
+.goal-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: var(--surface-a);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .goal-form h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .form-field {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+/* Estilos para o modo dark */
+.App.dark .goal-form  {
+  background-color: #444; /* Fundo mais escuro */
+  box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06); /* Sombra mais clara */
+  color: #fff;
+}
+
+.goal-form form label {
+font-weight: 600;
+font-size: 1.125rem;
+color: #333; /* Cor padrão da label (light mode) */
+}
+
+.App.dark .goal-form-container form label {
+  color: #eee; /* Cor da label no dark mode */
+}
+
+.goal-form-container form .p-inputtext,
+.goal-form-container form .p-inputtextarea,
+.goal-form-container form .p-dropdown {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-sizing: border-box;
+  color: #333; /* Cor do texto no input (light mode) */
+  background-color: #fff;
+}
+
+.App.dark .goal-form-container form .p-inputtext,
+.App.dark .goal-form-container form .p-inputtextarea,
+.App.dark .goal-form-container form .p-dropdown {
+  border-color: #555;
+  color: #eee; /* Cor do texto no input (dark mode) */
+  background: #555;
+}
