@@ -1,0 +1,34 @@
+.goal-report {
+    padding: 2rem;
+  }
+  
+  .filters {
+    margin-bottom: 1.5rem;
+  }
+  
+  .goal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .goal-card {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 300px;
+    background: var(--background-color);
+  }
+  
+  .goal-card h3 {
+    margin-top: 0;
+  }
+  
+  .goal-card p {
+    margin: 0.5rem 0;
+  }
+  
+  .goal-card .p-progressbar {
+    margin: 1rem 0;
+  }
+  

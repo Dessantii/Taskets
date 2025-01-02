@@ -1,45 +1,112 @@
-.App .sidebar { /* Selecionando a sidebar DENTRO do App */
+/* Sidebar Container */
+.sidebar {
+    height: 100vh;
     width: 250px;
     background-color: #200229;
     color: white;
     position: fixed;
-    height: 100vh;
+    top: 0;
+    left: 0;
     padding: 20px;
     z-index: 10;
-    top: 0;
-    overflow-y: auto; /* Adicione scroll se necessário */
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-}
-    .sidebar-link {
-        display: block;
-        margin: 5px 0;
-        text-decoration: none;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header Section */
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .theme-toggle {
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Navigation Menu */
+  .sidebar-menu {
+    flex-grow: 1;
+  }
+  
+  .sidebar-link {
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .sidebar-button {
+    width: 100%;
+    text-align: left;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: none;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-button .pi {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .sidebar-button:hover {
+    background-color: #374151;
+  }
+  
+  .sidebar-link.active .sidebar-button {
+    background-color: #4c6ef5;
+    font-weight: bold;
+  }
+  
+  /* Footer Section */
+  .sidebar-footer {
+    padding: 10px 0;
+    border-top: 1px solid #41454a;
+    text-align: center;
+  }
+  
+  .sidebar-footer-button {
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sidebar-footer-button:hover {
+    background-color: #374151;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 70px;
     }
-    
-    .sidebar-button { /* Estilos para o botão dentro da sidebar */
-        width: 100%; /* Largura total */
-        text-align: left; /* Alinhamento do texto à esquerda */
-        padding: 10px 15px; /* Espaçamento interno */
-        border-radius: 5px; /* Bordas arredondadas */
-        /* Remova estilos padrões do botão que você não quer */
-        background: none;
-        border: none;
-        color: white;
-        transition: background-color 0.3s ease;
+  
+    .sidebar-header h1 {
+      font-size: 1rem;
     }
-    
-    .sidebar-button:hover {
-        background-color: #374151;
+  
+    .sidebar-button span {
+      display: none;
     }
-    
-    .sidebar-button:enabled:hover{
-        background-color: #374151;
+  
+    .sidebar-button .pi {
+      margin-right: 0;
     }
-    
-    .sidebar-link.active .sidebar-button {
-        background-color: #4c6ef5;
-        font-weight: bold;
-    }
+  }
+  

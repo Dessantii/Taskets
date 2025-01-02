@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
@@ -8,16 +7,18 @@ import { Button } from 'primereact/button';
 import EmojiPicker from 'emoji-picker-react';
 import './GoalForm.css';
 
-const GoalForm = () => {
+
+
+const GoalForm = ({ onGoalSubmit }) => {
   const [goal, setGoal] = useState({
     name: '',
     category: '',
     target: '',
     deadline: null,
     notificationType: '',
-    notificationTime: null,
-    color: '#000000',
-    emoji: '',
+    emoji: '', // Inicialmente vazio
+    color: '#000000', // Cor inicial
+    
   });
 
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -28,7 +29,9 @@ const GoalForm = () => {
     { label: 'Peso que quer alcançar', value: 'weight' },
     { label: 'Algo que queira estudar', value: 'study' },
     { label: 'Personalizado', value: 'custom' },
+    
   ];
+
 
   const notificationOptions = [
     { label: 'Diária', value: 'daily' },
@@ -37,14 +40,52 @@ const GoalForm = () => {
   ];
 
   const handleEmojiClick = (event, emojiObject) => {
-    setGoal({ ...goal, emoji: emojiObject.emoji });
-    setShowEmojiPicker(false); // Fecha o seletor de emojis após a seleção
+    setGoal(prevGoal => ({
+      ...prevGoal,
+      emoji: emojiObject.emoji, // Armazena o emoji corretamente
+    }));
+    setShowEmojiPicker(false); // Fecha o emoji picker após seleção
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Meta cadastrada:', goal);
-    // Adicione aqui a lógica para salvar as metas
+
+    // Validação simples
+    if (!goal.name || !goal.category || !goal.target || !goal.deadline) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    // Verificar e garantir que target seja um número válido
+    const parsedTarget = parseFloat(goal.target.replace(/[^\d.-]/g, '').trim());
+    if (isNaN(parsedTarget)) {
+      alert('Por favor, insira um valor válido para o objetivo final.');
+      return;
+    }
+    
+
+    // Garantir que a cor e o emoji sejam sempre válidos
+    const updatedGoal = {
+      ...goal,
+      target: parsedTarget, // Atualiza o target com o valor correto
+      emoji: goal.emoji || '',  // Se não houver emoji selecionado, usa string vazia
+    };
+
+    console.log('Meta cadastrada:', updatedGoal); // Verifique o valor final da meta
+
+    // Envia a meta para o componente pai (App.js)
+    onGoalSubmit(updatedGoal);
+
+    // Limpeza do formulário
+    setGoal({
+      name: '',
+      category: '',
+      target: '',
+      deadline: null,
+      notificationType: '',
+      emoji: '', // Resetar emoji
+      color: '#000000', // Resetar cor
+    });
   };
 
   return (
@@ -90,6 +131,7 @@ const GoalForm = () => {
             value={goal.deadline}
             onChange={(e) => setGoal({ ...goal, deadline: e.value })}
             showIcon
+            dateFormat="dd/mm/yy"
           />
         </div>
 
@@ -111,6 +153,7 @@ const GoalForm = () => {
                 onChange={(e) => setGoal({ ...goal, notificationTime: e.value })}
                 timeOnly
                 showIcon
+                hourFormat="24"
               />
             </div>
           )}
@@ -135,6 +178,9 @@ const GoalForm = () => {
               readOnly
               onClick={() => setShowEmojiPicker(!showEmojiPicker)}
             />
+            {goal.emoji && !showEmojiPicker && (
+              <span style={{ fontSize: '2rem' }}>{goal.emoji}</span>
+            )}
             {showEmojiPicker && (
               <div className="emoji-picker-popup">
                 <EmojiPicker onEmojiClick={handleEmojiClick} />
