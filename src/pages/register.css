@@ -1,0 +1,84 @@
+/* Estilos gerais para a tela de cadastro */
+.register-container {
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.register-container h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.register-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Estilos para os campos de entrada */
+.register-container label {
+    font-size: 1rem;
+    color: #555;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.register-container input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    width: 100%;
+    transition: border-color 0.3s;
+}
+
+.register-container input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Estilos para o botão de cadastro */
+.register-container button {
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo da mensagem de erro */
+.register-container p {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.register-container p.error {
+    color: #d9534f;
+}
+
+.register-container p.success {
+    color: #5bc0de;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .register-container {
+        padding: 15px;
+        max-width: 90%;
+    }
+}

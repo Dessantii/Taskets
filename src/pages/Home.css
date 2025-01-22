@@ -1,0 +1,123 @@
+/* Estilos principais */
+.home {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f4f4f9;
+  }
+  
+  .home-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .home-header h1 {
+    font-size: 2.5rem;
+    color: #4f46e5;
+  }
+  
+  .home-header p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .widgets {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .widget {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 32%;
+  }
+  
+  .widget h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .widget p {
+    font-size: 1rem;
+    color: #777;
+  }
+  
+  .progress-section {
+    margin-top: 50px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .progress-section h2 {
+    font-size: 1.8rem;
+    color: #4f46e5;
+    margin-bottom: 20px;
+  }
+  
+  .chart {
+    width: 100%;
+    height: 250px;
+    margin-top: 20px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .home-header h1 {
+      font-size: 2rem;
+    }
+  
+    .home-header p {
+      font-size: 1rem;
+    }
+  
+    .widgets {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .widget {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .progress-section {
+      margin-top: 30px;
+    }
+  
+    .chart {
+      height: 200px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .home-header h1 {
+      font-size: 1.5rem;
+    }
+  
+    .home-header p {
+      font-size: 0.9rem;
+    }
+  
+    .widget h2 {
+      font-size: 1.2rem;
+    }
+  
+    .widget p {
+      font-size: 0.9rem;
+    }
+  
+    .progress-section h2 {
+      font-size: 1.5rem;
+    }
+  
+    .chart {
+      height: 180px;
+    }
+  }
+  

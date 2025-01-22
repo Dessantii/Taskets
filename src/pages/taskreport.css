@@ -1,0 +1,55 @@
+/* Estilos gerais do contêiner do relatório de tarefas */
+.tasks-report-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--surface-0);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tasks-report-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.task-report-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-report-list li {
+    background-color: var(--surface-1);
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-report-list li h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.task-report-list li p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 5px 0;
+}
+
+.task-report-list li strong {
+    font-weight: 600;
+}
+
+/* Estilo quando não há tarefas registradas */
+.tasks-report-container p {
+    font-size: 1rem;
+    color: var(--gray-600);
+    text-align: center;
+    margin-top: 20px;
+}
+
