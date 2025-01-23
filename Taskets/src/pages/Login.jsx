@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => { // Receive onLoginSuccess prop
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -23,14 +23,14 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // Supondo que o token vem no campo `token` da resposta
+        // Supposing the token comes in the field `token` of the response
         localStorage.setItem('auth_token', data.token);
         setError('');
         alert('Login bem-sucedido!');
-        props.onLoginSuccess(); //
-        navigate('/Home'); // Redireciona para a página inicial
+        onLoginSuccess(); // Call the prop function to notify parent
+        navigate('/Home'); // Redirects to the home page
       } else {
-        // Trata erros de autenticação
+        // Handle authentication errors
         const errorData = await response.json();
         setError(errorData.message || 'Erro no login');
       }
@@ -41,7 +41,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page"> {/* Adicione o container principal */}
+    <div className="login-page">
       <div className="login-container">
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
@@ -72,7 +72,6 @@ const Login = () => {
           Não tem uma conta? <Link to="/register">Cadastre-se</Link>
         </p>
       </div>
-
     </div>
   );
 };
