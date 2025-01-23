@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './login.css';
+import { useNavigate, Link } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +27,8 @@ const Login = () => {
         localStorage.setItem('auth_token', data.token);
         setError('');
         alert('Login bem-sucedido!');
-        navigate('/'); // Redireciona para a página inicial
+        props.onLoginSuccess(); //
+        navigate('/Home'); // Redireciona para a página inicial
       } else {
         // Trata erros de autenticação
         const errorData = await response.json();
@@ -40,30 +41,38 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-          />
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-          />
-        </div>
-        <button type="submit">Entrar</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="login-page"> {/* Adicione o container principal */}
+      <div className="login-container">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin}>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Senha:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Entrar</button>
+        </form>
+        {error && <p className="login-error">{error}</p>}
+        <p>
+          Não tem uma conta? <Link to="/register">Cadastre-se</Link>
+        </p>
+      </div>
+
     </div>
   );
 };

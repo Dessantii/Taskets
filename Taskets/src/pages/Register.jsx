@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './register.css';
+import bcrypt from 'bcryptjs'; // Importa a biblioteca bcrypt
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -20,12 +21,16 @@ const Register = () => {
     }
 
     try {
+      // Hash da senha antes de enviar
+      const saltRounds = 10; // Nível de "sal" (ajuste como necessário)
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
       const response = await fetch('https://taskets-back.vercel.app/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password: hashedPassword }),
       });
 
       if (response.ok) {
@@ -46,40 +51,42 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Cadastro</h2>
-      <form onSubmit={handleRegister}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Confirmar Senha:</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Cadastrar</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
+    <div className="register-page"> {/* Adicione o container principal */}
+      <div className="register-container">
+        <h2>Cadastro</h2>
+        <form onSubmit={handleRegister}>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Senha:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Confirmar Senha:</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {success && <p style={{ color: 'green' }}>{success}</p>}
+      </div>
     </div>
   );
 };

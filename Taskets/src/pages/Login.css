@@ -1,5 +1,5 @@
-/* Estilos gerais para a tela de cadastro */
-.register-page {
+/* Estilos gerais para a tela de login */
+.login-page {
     padding: 20px;
     max-width: 400px;
     margin: 0 auto;
@@ -9,28 +9,28 @@
     text-align: center;
 }
 
-.register-container {
+.login-container {
     font-size: 2rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
 }
 
-.register-container form {
+.login-container form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
 /* Estilos para os campos de entrada */
-.register-container label {
+.login-container label {
     font-size: 1rem;
     color: #555;
     text-align: left;
     margin-bottom: 5px;
 }
 
-.register-container input {
+.login-container input {
     padding: 12px;
     font-size: 1rem;
     border: 2px solid #e0e0e0;
@@ -39,14 +39,14 @@
     transition: border-color 0.3s;
 }
 
-.register-container input:focus {
+.login-container input:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
 }
 
-/* Estilos para o botão de cadastro */
-.register-container button {
+/* Estilos para o botão de login */
+.login-container button {
     padding: 12px;
     font-size: 1.1rem;
     background-color: #007bff;
@@ -57,27 +57,49 @@
     transition: background-color 0.3s;
 }
 
-.register-container button:hover {
+.login-container button:hover {
     background-color: #0056b3;
 }
 
 /* Estilo da mensagem de erro */
-.register-container p {
+.login-container p {
     font-size: 1rem;
+    color: #d9534f;
     margin-top: 10px;
 }
 
-.register-container p.error {
-    color: #d9534f;
+/* Estilo para link ou botão de recuperação de senha */
+.forgot-password {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: block;
 }
 
-.register-container p.success {
-    color: #5bc0de;
+.forgot-password:hover {
+    text-decoration: underline;
 }
 
+.register-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #28a745; /* Cor verde para cadastro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Espaçamento acima do botão */
+    text-decoration: none; /* Remove sublinhado do link */
+  }
+  
+  .register-button:hover {
+    background-color: #218838;
+  }
+  
 /* Responsividade */
 @media (max-width: 768px) {
-    .register-container {
+    .login-container {
         padding: 15px;
         max-width: 90%;
     }

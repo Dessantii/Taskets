@@ -1,5 +1,5 @@
-// App.jsx
 // eslint-disable-next-line no-unused-vars
+import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Sidebar from './components/Sidebar';
@@ -12,7 +12,7 @@ import GoalReport from './pages/GoalReport';
 import Login from './pages/Login';
 import Logout from './components/Logout'; // Importando o componente de logout
 import Register from './pages/Register';
-import './App.css';
+import PrivateRoute from './PrivateRoute';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -35,6 +35,10 @@ function App() {
   const handleGoalSubmit = (newGoal) => {
     setGoals((prevGoals) => [...prevGoals, newGoal]);
   };
+
+  const [isAuthenticated] = useState(false);
+
+
 
   const handleThemeToggle = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -77,14 +81,17 @@ function App() {
           {/* Conteúdo principal */}
           <div className="content" style={{ padding: '20px' }}>
             <Routes>
-              <Route path="Register" element={<Register />} />
-              <Route path="login" element={<Login />} />
-              <Route path="/" element={<Home />} />
+              <Route path="/Register" element={<Register />} />
+              <Route path="/Login" element={<Login />} />
+              <Route path="/" element={<Login />} />
+              <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}> {/* Usando PrivateRoute.js */}
+              <Route path="/Home" element={<Home />} />
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/tasks-report" element={<TasksReport />} />
               <Route path="/goals" element={<GoalForm onGoalSubmit={handleGoalSubmit} />} />
               <Route path="/goal-report" element={<GoalReport goals={goals} />} />
               <Route path="/logout" element={<Logout />} /> {/* Rota de logout */}
+              </Route>
             </Routes>
           </div>
         </div>
