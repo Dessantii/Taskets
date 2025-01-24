@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useState, useEffect } from 'react'; // Import useEffect
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"; // Import Navigate
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -18,24 +18,19 @@ import 'primeicons/primeicons.css';
 
 function App() {
     const [theme, setTheme] = useState('light');
-    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+    const [isSidebarVisible, setIsSidebarVisible] = useState(false); // Inicializa como false
     const [goals, setGoals] = useState([
-        {
-            name: 'Comprar bicicleta',
-            category: 'purchase',
-            targetValue: 1000,
-            currentValue: 200,
-            deadline: new Date(),
-            color: '#FF5733',
-            emoji: '🚴',
-        },
+        { /* Seus dados de metas */ },
     ]);
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // Moveu para cima
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem('auth_token');
-        setIsAuthenticated(!!token);
-    }, []);
+        const storedToken = localStorage.getItem('auth_token');
+        setIsAuthenticated(!!storedToken);
+        if (!!storedToken) {
+            setIsSidebarVisible(true); // Mostra a sidebar se houver token
+        }
+    }, [isAuthenticated]); // Executa toda vez que isAuthenticated muda
 
     const handleGoalSubmit = (newGoal) => {
         setGoals((prevGoals) => [...prevGoals, newGoal]);
@@ -51,38 +46,54 @@ function App() {
         setIsSidebarVisible(!isSidebarVisible);
     };
 
-    const handleLoginSuccess = () => {
+    const handleLoginSuccess = (token) => {
+        localStorage.setItem('auth_token', token);
         setIsAuthenticated(true);
+        setIsSidebarVisible(true); // Garante que a sidebar apareça após o login
     };
 
     const handleLogoutSuccess = () => {
+        localStorage.removeItem('auth_token');
         setIsAuthenticated(false);
-    }
+        setIsSidebarVisible(false); // Esconde a sidebar no logout
+        window.location.href = '/login'; // Redireciona para /login
+    };
 
     return (
-        <Router>
-            <div className={`App ${theme}`} style={{ display: 'flex' }}>
-                {isSidebarVisible && (
-                    <Sidebar
-                        handleThemeToggle={handleThemeToggle}
-                        theme={theme}
-                        isVisible={isSidebarVisible}
-                        toggleSidebar={toggleSidebar}
-                    />
-                )}
+      <Router>
+      <div className={`App ${theme}`} style={{ display: 'flex' }}>
+          {/* Renderização condicional da Sidebar (agora correta) */}
+          {isAuthenticated && ( // Renderiza o container da sidebar apenas se autenticado
+              <div className={`sidebar-container ${isSidebarVisible ? 'visible' : ''}`}> {/* Container com classe condicional */}
+                  <Sidebar
+                      handleThemeToggle={handleThemeToggle}
+                      theme={theme}
+                      toggleSidebar={toggleSidebar}
+                  />
+              </div>
+          )}
 
-                <div className="main-content" style={{ flex: 1, transition: 'margin-left 0.3s ease' }}>
-                    <Navbar
-                        handleThemeToggle={handleThemeToggle}
-                        theme={theme}
-                        toggleSidebar={toggleSidebar}
-                    />
+          <div
+              className="main-content"
+              style={{
+                  flex: 1,
+                  transition: 'margin-left 0.3s ease',
+                  marginLeft: isAuthenticated && isSidebarVisible ? '250px' : 0, // Margem condicional
+              }}
+          >
+              <Navbar
+                  handleThemeToggle={handleThemeToggle}
+                  theme={theme}
+                  toggleSidebar={toggleSidebar}
+                  isAuthenticated={isAuthenticated}
+                  handleLogoutSuccess={handleLogoutSuccess}
+              />
 
-                    <div className="content" style={{ padding: '20px' }}>
+              <div className="content" style={{ padding: '20px' }}>
                         <Routes>
                             <Route path="/Register" element={<Register />} />
                             <Route path="/Login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-                            <Route path="/" element={<Navigate to="/Login" />} /> {/* Redirecionamento para o login */}
+                            <Route path="/" element={<Navigate to="/Login" />} />
                             <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
                                 <Route path="/Home" element={<Home />} />
                                 <Route path="/tasks" element={<Tasks />} />
